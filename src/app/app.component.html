@@ -1,0 +1,134 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-success bg-success text-white">
+  <div class="container">
+    <div class="navbar-nav mx-auto">
+      <a class="nav-item nav-link text-white" routerLink="/tarea">Tareas</a>
+      <a class="nav-item nav-link text-white" routerLink="/responsable">Responsables</a>
+      <a class="nav-item nav-link text-white" routerLink="/proyecto">Proyectos</a>
+      <a class="nav-item nav-link text-white" routerLink="/departamento">Departamentos</a>
+      <a class="nav-item nav-link text-white" routerLink="/puesto">Puestos</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-4">
+  <!-- Contenido Dinámico de las Entidades -->
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-center text-white py-3">
+  <p>CRUD de Entidades © 2024</p>
+</footer>
+
+  <!--<h1 >GESTIÓN DE TAREAS</h1> 
+  <h2>Crea una tarea nueva</h2>
+  
+  <form [formGroup]="tareaForm" (ngSubmit)="guardar()" class="form-control form-control-mb-4">
+     
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text" formControlName="nombre" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="prioridad">Prioridad</label>
+      <input id="prioridad" type="text" formControlName="prioridad" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="responsable">Responsable</label>
+      <input id="responsable" type="text" formControlName="responsable" class="form-control">
+    </div>
+
+    <div class="form-group">
+     <label for="estado">Estado</label>
+     <input id="estado" type="text" formControlName="estado" class="form-control">
+   </div>
+
+    <div class="form-group">
+      <label for="fechaRegistro">Fecha de Registro</label>
+      <input id="fechaRegistro" type="datetime-local" formControlName="fechaRegistro" class="form-control">
+    </div>
+
+    <div class="form-group">
+     <label for="fechaCierre">Fecha de Cierre</label>
+     <input id="fechaCierre" type="datetime-local" formControlName="fechaCierre" class="form-control">
+   </div>
+
+    <div class="form-group">
+     <label for="proyecto">Proyecto</label>
+     <input id="proyecto" type="text" formControlName="proyecto" class="form-control">
+   </div>
+
+    <button type="submit" class="btn btn-success m-2">
+      {{ tareaSeleccionada ? 'Actualizar' : 'Guardar' }}
+    </button>
+    <button type="button" (click)="limpiarFormulario()" class="btn btn-secondary m-2">Cancelar</button>
+  </form> -->
+  
+  
+
+  <!--<div class= "container form-control form-control-mb-4">
+     <div class="form-group">
+        <label for="nombreTarea">Nombre:</label>
+       <input id="nombreTarea" type="text" [(ngModel)]="searchFilters.nombreTarea" class="form-control" placeholder="Buscar tarea">
+     </div>
+  
+     <div class="form-group">
+       <label for="responsable">Responsable:</label>
+        <input id="responsable" type="text" [(ngModel)]="searchFilters.responsable" class="form-control" placeholder="Buscar responsable">
+     </div>
+  
+     <div class="form-group">
+       <label for="proyecto">Proyecto:</label>
+        <input id="proyecto" type="text" [(ngModel)]="searchFilters.proyecto" class="form-control" placeholder="Buscar proyecto">
+     </div>
+  
+     <div class="form-group">
+       <label for="departamento">Departamento:</label>
+       <input id="departamento" type="text" [(ngModel)]="searchFilters.departamento" class="form-control" placeholder="Buscar departamento">
+     </div>
+  
+      <div class="form-group">
+       <label for="puesto">Puesto:</label>
+        <input id="puesto" type="text" [(ngModel)]="searchFilters.puesto" class="form-control" placeholder="Buscar puesto">
+      </div>
+  
+  
+      <button (click)="buscarTareas()" class="btn btn-success m-2">Buscar</button>
+      <button (click)="limpiarBusqueda()" class="btn btn-secondary m-2">Limpiar</button>
+  </div>
+
+
+   <table class="table table-striped">
+     <thead>
+       <tr>
+         <th>Id</th>
+         <th>Nombre</th>
+         <th>Prioridad</th>
+         <th>Responsable</th>
+         <th>Estado</th>
+         <th>Fecha de Registro</th>
+         <th>Fecha de Cierre</th>
+         <th>Proyecto</th>
+         <th>Acciones</th>
+       </tr>
+     </thead>
+     <tbody class="mt-2">
+       <tr *ngFor= "let tarea of filteredTarea">
+         <td>{{ tarea.id }}</td>
+         <td>{{ tarea.nombre }}</td>
+         <td>{{ tarea.prioridad }}</td>
+         <td>{{ tarea.responsableId }}</td>
+         <td>{{ tarea.estado }}</td>
+         <td>{{ tarea.fechaRegistro ? (tarea.fechaRegistro | date:'yyyy-MM-dd') : 'N/A'}}</td>
+         <td>{{ tarea.fechaCierre ? (tarea.fechaCierre | date:'yyyy-MM-dd') : 'N/A' }}</td>
+         <td>{{ tarea.proyectoId }}</td>
+         <td>
+           <button (click)="seleccionarTarea(tarea)" class="btn btn-warning m-2">Editar</button>
+           <button (click)="eliminarTarea(tarea.id)" class="btn btn-danger">Eliminar</button>
+         </td>
+       </tr>
+     </tbody>
+   </table>-->

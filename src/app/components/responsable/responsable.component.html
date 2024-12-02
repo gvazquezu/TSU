@@ -1,0 +1,153 @@
+<div class="container">
+  <h2 class="text-center my-3">Gestión de Responsables</h2>
+  
+  <!-- Formulario -->
+  <form [formGroup]="responsableForm" (ngSubmit)="guardar()" class="mb-4">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input id="nombre" type="text" class="form-control" formControlName="nombre">
+        <div *ngIf="responsableForm.get('nombre')?.invalid && responsableForm.get('nombre')?.touched" class="text-danger">
+          El nombre es obligatorio.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input id="apellido" type="text" class="form-control" formControlName="apellido">
+        <div *ngIf="responsableForm.get('apellido')?.invalid && responsableForm.get('apellido')?.touched" class="text-danger">
+          El apellido es obligatorio.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="correo" class="form-label">Correo</label>
+        <input id="correo" type="email" class="form-control" formControlName="correo">
+        <div *ngIf="responsableForm.get('correo')?.invalid && responsableForm.get('correo')?.touched" class="text-danger">
+          El correo es obligatorio y debe ser válido.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="celular" class="form-label">Celular</label>
+        <input id="celular" type="text" class="form-control" formControlName="celular">
+        <div *ngIf="responsableForm.get('celular')?.invalid && responsableForm.get('celular')?.touched" class="text-danger">
+          El celular es obligatorio.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="departamentoId" class="form-label">Departamento</label>
+        <input id="departamentoId" type="number" class="form-control" formControlName="departamentoId">
+        <div *ngIf="responsableForm.get('departamentoId')?.invalid && responsableForm.get('departamentoId')?.touched" class="text-danger">
+          El departamento es obligatorio.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="puestoId" class="form-label">Puesto</label>
+        <input id="puestoId" type="number" class="form-control" formControlName="puestoId">
+        <div *ngIf="responsableForm.get('puestoId')?.invalid && responsableForm.get('puestoId')?.touched" class="text-danger">
+          El puesto es obligatorio.
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-success" [disabled]="responsableForm.invalid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="limpiarFormulario()">Limpiar</button>
+    </div>
+  </form>
+  
+  <!-- Tabla -->
+  <h3 class="my-3">Listado de Responsables</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Celular</th>
+        <th>Departamento</th>
+        <th>Puesto</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let responsable of responsables">
+        <td>{{ responsable.id }}</td>
+        <td>{{ responsable.nombre }}</td>
+        <td>{{ responsable.apellido }}</td>
+        <td>{{ responsable.correo }}</td>
+        <td>{{ responsable.celular }}</td>
+        <td>{{ responsable.departamentoId }}</td>
+        <td>{{ responsable.puestoId }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="seleccionarResponsable(responsable)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminarResponsable(responsable.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    
+   <!-- <h2>Realiza búsqueda</h2>
+  
+    <div class= "container form-control form-control-mb-4">
+       <div class="form-group">
+          <label for="nombreResponsable">Nombre:</label>
+         <input id="nombreResponsable" type="text" [(ngModel)]="searchFilters.nombreResponsable" class="form-control" placeholder="Buscar responsable">
+       </div>
+    
+       <div class="form-group">
+         <label for="tarea">Tarea:</label>
+          <input id="tarea" type="text" [(ngModel)]="searchFilters.tarea" class="form-control" placeholder="Buscar tarea">
+       </div>
+    
+       <div class="form-group">
+         <label for="proyecto">Proyecto:</label>
+          <input id="proyecto" type="text" [(ngModel)]="searchFilters.proyecto" class="form-control" placeholder="Buscar proyecto">
+       </div>
+    
+       <div class="form-group">
+         <label for="departamento">Departamento:</label>
+         <input id="departamento" type="text" [(ngModel)]="searchFilters.departamento" class="form-control" placeholder="Buscar departamento">
+       </div>
+    
+        <div class="form-group">
+         <label for="puesto">Puesto:</label>
+          <input id="puesto" type="text" [(ngModel)]="searchFilters.puesto" class="form-control" placeholder="Buscar puesto">
+        </div>
+    
+    
+        <button (click)="buscarResponsables()" class="btn btn-success m-2">Buscar</button>
+        <button (click)="limpiarBusqueda()" class="btn btn-secondary m-2">Limpiar</button>
+    </div>
+  
+  
+     <table class="table table-striped">
+       <thead>
+         <tr>
+           <th>Id</th>
+           <th>Nombre</th>
+           <th>Apellido/th>
+           <th>Correo</th>
+           <th>Celular</th>
+           <th>Departamento</th>
+           <th>Puesto</th>
+           <th>Acciones</th>
+         </tr>
+       </thead>
+       <tbody class="mt-2">
+         <tr *ngFor= "let responsable of filteredResponsable">
+           <td>{{ responsable.id }}</td>
+           <td>{{ responsable.nombre }}</td>
+           <td>{{ responsable.apellido }}</td>
+           <td>{{ responsable.correo }}</td>
+           <td>{{ responsable.celular }}</td>
+           <td>{{ responsable.departamentoId }}</td>
+           <td>{{ responsable.puestoId }}</td>
+           <td>
+             <button (click)="seleccionarResponsable(responsable)" class="btn btn-warning m-2">Editar</button>
+             <button (click)="eliminarResponsable(responsable.id)" class="btn btn-danger">Eliminar</button>
+           </td>
+         </tr>
+       </tbody>
+     </table>
+  </div>-->

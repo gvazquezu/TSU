@@ -1,0 +1,51 @@
+<div class="container">
+  <h2 class="text-center my-3">Gestión de Proyectos</h2>
+  
+  <!-- Formulario -->
+  <form [formGroup]="proyectoForm" (ngSubmit)="guardar()" class="mb-4">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input id="nombre" type="text" class="form-control" formControlName="nombre">
+        <div *ngIf="proyectoForm.get('nombre')?.invalid && proyectoForm.get('nombre')?.touched" class="text-danger">
+          El nombre es obligatorio.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea id="descripcion" class="form-control" formControlName="descripcion"></textarea>
+        <div *ngIf="proyectoForm.get('descripcion')?.invalid && proyectoForm.get('descripcion')?.touched" class="text-danger">
+          La descripción es obligatoria.
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-success" [disabled]="proyectoForm.invalid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="limpiarFormulario()">Limpiar</button>
+    </div>
+  </form>
+  
+  <!-- Tabla -->
+  <h3 class="my-3">Listado de Proyectos</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let proyecto of proyectos">
+        <td>{{ proyecto.id }}</td>
+        <td>{{ proyecto.nombre }}</td>
+        <td>{{ proyecto.descripcion }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="seleccionarProyecto(proyecto)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminarProyecto(proyecto.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
